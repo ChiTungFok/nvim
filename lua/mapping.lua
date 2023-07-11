@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>ff', builtin.fd, opt)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opt)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opt)
 vim.keymap.set('n', '<leader>ft', builtin.tags, opt)
+vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find)
 
 for i = 0, 9, 1 do
     vim.keymap.set('n', '<leader>'..tostring(i), tostring(i)..'gt', opt)
@@ -35,12 +36,13 @@ local key_mapper = {}
 
 key_mapper.lsp = function(cb)
     cb('n', 'K', vim.lsp.buf.hover, opt)
-    cb('n', 'gd', function() builtin.lsp_definitions({ jump_type = "tab" }) end, opt)
+    cb('n', 'gd', function() builtin.lsp_definitions({ jump_type = "tab", reuse_win = true }) end, opt)
     cb('n', 'gD', vim.lsp.buf.declaration, opt)
     cb('n', 'gi', function() builtin.lsp_implementations({ jump_type = "tab" }) end, opt)
-    cb('n', 'gr', function() builtin.lsp_references({ jump_type = "tab" }) end, opt)
+    cb('n', 'gr', function() builtin.lsp_references({ jump_type = "tab" , reuse_win = true }) end, opt)
     cb('n', '<leader>rn', vim.lsp.buf.rename, opt)
     cb('n', '<leader>ds', function() builtin.diagnostics({ bufnr = 0 }) end, opt)
+    cb('n', '<leader>s', function() builtin.lsp_document_symbols({ bufnr = 0 }) end, opt)
     cb('n', '<leader>fm', function() vim.lsp.buf.format() end, opt)
 end
 
