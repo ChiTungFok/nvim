@@ -7,7 +7,7 @@ local opt = {
     nowait = true
 }
 
-vim.keymap.set('n', '<leader>l', ':NvimTreeToggle<CR>', opt)
+vim.keymap.set('n', '<leader>l', ':NvimTreeFindFileToggle<CR>', opt)
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.fd, opt)
