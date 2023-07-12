@@ -66,6 +66,8 @@ key_mapper.telescope = {
         ["<C-k>"] = "move_selection_previous",
         ["<Down>"] = "move_selection_next",
         ["<C-j>"] = "move_selection_next",
+        ["<leader>v"] = "file_vsplit",
+        ["<leader>x"] = "file_split",
     },
 }
 
