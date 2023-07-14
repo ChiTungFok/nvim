@@ -19,6 +19,8 @@ local plugins = {
 
     'windwp/nvim-autopairs',
 
+    { "lukas-reineke/indent-blankline.nvim" },
+
     'numToStr/Comment.nvim',
 
     {
@@ -34,10 +36,16 @@ local plugins = {
 
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { {'nvim-lua/plenary.nvim'} }
+        dependencies = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-live-grep-args.nvim'},
+            {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        },
+        config = function(plugin)
+            require('telescope').load_extension('fzf')
+            require("telescope").load_extension("live_grep_args")
+        end
     },
-
-    {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
 

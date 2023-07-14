@@ -33,7 +33,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require('lspconfig').gopls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {"/home/chitungfok/go/bin/gopls", "serve"},
+    cmd = {"/root/go/bin/gopls", "serve"},
     settings = {
       gopls = {
           gofumpt = true,

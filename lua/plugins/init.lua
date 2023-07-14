@@ -1,0 +1,7 @@
+require ('plugins.autopairs')
+require ('plugins.cmp')
+require ('plugins.comments')
+require ('plugins.git')
+require ('plugins.nvim-tree')
+require ('plugins.telescope')
+require ('plugins.indent')

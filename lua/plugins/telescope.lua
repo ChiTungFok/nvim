@@ -4,5 +4,3 @@ require('telescope').setup{
         mappings = require('mapping').telescope
     },
 }
-
-require('telescope').load_extension('fzf')

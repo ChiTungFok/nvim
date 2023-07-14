@@ -10,8 +10,9 @@ local opt = {
 vim.keymap.set('n', '<leader>l', ':NvimTreeFindFileToggle<CR>', opt)
 
 local builtin = require('telescope.builtin')
+local extensions = require('telescope').extensions
 vim.keymap.set('n', '<leader>ff', builtin.fd, opt)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, opt)
+vim.keymap.set('n', '<leader>fg', extensions.live_grep_args.live_grep_args, opt)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opt)
 vim.keymap.set('n', '<leader>ft', builtin.tags, opt)
 vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find)
