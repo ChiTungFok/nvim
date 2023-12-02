@@ -6,8 +6,11 @@ require('nvim-tree').setup({
     hijack_cursor = true,
     view = {
         width = 36,
-        hide_root_folder = false,
         signcolumn = "yes",
+    },
+    renderer = {
+        group_empty = true,
+        root_folder_label = true,
     },
     git = {
         enable = true,

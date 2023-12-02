@@ -19,7 +19,7 @@ local plugins = {
 
     'windwp/nvim-autopairs',
 
-    { "lukas-reineke/indent-blankline.nvim" },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
     'numToStr/Comment.nvim',
 
