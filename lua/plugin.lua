@@ -52,6 +52,7 @@ local plugins = {
     'lewis6991/gitsigns.nvim',
 
     { 'catppuccin/nvim', name = 'catppuccin' },
+
     'folke/tokyonight.nvim',
     "AstroNvim/astrotheme",
 
@@ -67,6 +68,8 @@ local plugins = {
 
     'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
     'L3MON4D3/LuaSnip', -- Snippets plugin
+
+    { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }, },
 }
 
 return require('lazy').setup(plugins)

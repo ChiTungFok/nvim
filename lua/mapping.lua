@@ -42,10 +42,17 @@ key_mapper.lsp = function(cb)
     cb('n', 'gi', function() builtin.lsp_implementations({ jump_type = "tab" }) end, opt)
     cb('n', 'gr', function() builtin.lsp_references({ jump_type = "tab" , reuse_win = true }) end, opt)
     cb('n', '<leader>rn', vim.lsp.buf.rename, opt)
-    cb('n', '<leader>ds', function() builtin.diagnostics({ bufnr = 0 }) end, opt)
     cb('n', '<leader>s', function() builtin.lsp_document_symbols({ bufnr = 0 }) end, opt)
     cb('n', '<leader>fm', function() vim.lsp.buf.format() end, opt)
 end
+
+-- Trouble
+vim.keymap.set("n", "<leader>df", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>dw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>dd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>dq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>dl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 
 local has_words_before = function()
   unpack = unpack or table.unpack
@@ -87,6 +94,8 @@ key_mapper.cmp = {
     end,
 }
 
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 key_mapper.telescope = {
     i = {
         ["<Up>"] = "move_selection_previous",
@@ -95,6 +104,7 @@ key_mapper.telescope = {
         ["<C-j>"] = "move_selection_next",
         ["<leader>v"] = "file_vsplit",
         ["<leader>x"] = "file_split",
+        ["<c-t>"] = trouble.open_with_trouble,
     },
 }
 

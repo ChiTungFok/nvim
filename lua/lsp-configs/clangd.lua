@@ -20,7 +20,7 @@ require('lspconfig').clangd.setup{
         "/usr/bin/clangd",
         "--background-index",
         "--compile-commands-dir=build",
-        "-j=30",
+        "-j=2",
         "--query-driver=/usr/bin/clang++",
         "--clang-tidy",
         "--all-scopes-completion",
