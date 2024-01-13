@@ -70,6 +70,21 @@ local plugins = {
     'L3MON4D3/LuaSnip', -- Snippets plugin
 
     { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }, },
+
+    {
+        'simrat39/rust-tools.nvim',
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+        },
+    },
+
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { 'kevinhwang91/promise-async' },
+        lazy = true,
+    },
 }
 
 return require('lazy').setup(plugins)
