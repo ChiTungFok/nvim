@@ -37,7 +37,7 @@ capabilities.textDocument.foldingRange = {
 require('lspconfig').gopls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {"/root/go/bin/gopls", "serve"},
+    cmd = {"/home/chitunghuo/go/bin/gopls", "serve"},
     settings = {
       gopls = {
           gofumpt = true,

@@ -43,6 +43,7 @@ local plugins = {
             require("telescope").load_extension("live_grep_args")
         end
     },
+    {"akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons"},
     {"sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim"},
     "lewis6991/gitsigns.nvim",
     {"catppuccin/nvim", name = "catppuccin"},
@@ -65,6 +66,13 @@ local plugins = {
             "nvim-lua/plenary.nvim",
             "mfussenegger/nvim-dap"
         }
+    },
+    {
+        "yanskun/gotests.nvim",
+        ft = "go",
+        config = function()
+            require("gotests").setup()
+        end
     },
     {
         "kevinhwang91/nvim-ufo",
