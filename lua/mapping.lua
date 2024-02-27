@@ -84,7 +84,7 @@ vim.keymap.set("n", "<C-j>", "<Cmd>BufferLineMovePrev<CR>")
 vim.keymap.set("n", "<C-k>", "<Cmd>BufferLineMoveNext<CR>")
 vim.keymap.set(
     "n",
-    "<leader>z",
+    "<leader>d",
     function()
         if vim.bo.modified then
             vim.cmd.write()
