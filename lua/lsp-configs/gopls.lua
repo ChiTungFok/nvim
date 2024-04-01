@@ -7,26 +7,29 @@ local on_attach = function(client, bufnr)
         opts.buffer = bufnr
         vim.keymap.set(mode, l, r, opts)
     end
-    require('mapping').lsp(set_key_mapper)
+    require("mapping").lsp(set_key_mapper)
     navbuddy.attach(client, bufnr)
 
-    if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
+    if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
         local semantic = client.config.capabilities.textDocument.semanticTokens
         client.server_capabilities.semanticTokensProvider = {
             full = true,
             legend = {tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes},
-            range = true,
+            range = true
         }
     end
 end
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-      vim.lsp.buf.format()
-      vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
-  end
-})
+vim.api.nvim_create_autocmd(
+    "BufWritePre",
+    {
+        pattern = "*.go",
+        callback = function()
+            vim.lsp.buf.format()
+            vim.lsp.buf.code_action({context = {only = {"source.organizeImports"}}, apply = true})
+        end
+    }
+)
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -34,18 +37,17 @@ capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true
 }
 
-require('lspconfig').gopls.setup{
+require("lspconfig").gopls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {"/home/chitunghuo/go/bin/gopls", "serve"},
+    cmd = {"/root/go/bin/gopls", "serve"},
     settings = {
-      gopls = {
-          gofumpt = true,
-          semanticTokens = true,
-          analyses = {
-              unusedparams = true,
-          },
-          staticcheck = true,
-      },
-  },
+        gopls = {
+            gofumpt = true,
+            semanticTokens = true,
+            analyses = {
+                unusedparams = true
+            }
+        }
+    }
 }

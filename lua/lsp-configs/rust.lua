@@ -16,6 +16,13 @@ capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true
 }
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.rs',
+  callback = function()
+      vim.lsp.buf.format()
+  end
+})
+
 local opts = {
   tools = {
     runnables = {
@@ -36,7 +43,7 @@ local opts = {
     -- on_attach is a callback called when the language server attachs to the buffer
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = {"/home/chitunghuo/.cargo/bin/rust-analyzer"},
+    cmd = {"/root/.cargo/bin/rust-analyzer"},
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
