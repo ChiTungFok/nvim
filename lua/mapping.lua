@@ -37,8 +37,9 @@ local key_mapper = {}
 key_mapper.lsp = function(cb)
     cb("n", "K", vim.lsp.buf.hover, opt)
     cb("n", "gd", function() require("trouble").toggle("lsp_definitions") end, opt)
-    cb("n", "gD", vim.lsp.buf.declaration, opt)
-    cb("n", "gr", function() require("trouble").toggle("lsp_references") end, opt)
+    cb("n", "gD", function() require("trouble").toggle("lsp_declarations") end, opt)
+    cb("n", "gr", "<cmd>Trouble lsp_references toggle focus=true<cr>", opt)
+    cb("n", "gi", "<cmd>Trouble lsp_implementations toggle focus=true<cr>", opt)
     cb("n", "<leader>rn", vim.lsp.buf.rename, opt)
     cb(
         "n",
@@ -59,12 +60,10 @@ key_mapper.lsp = function(cb)
 end
 
 -- Trouble
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>", opt)
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=true<cr>", opt)
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", opt)
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", opt)
 
 -- bufferline
 local bufferline = require("bufferline")
@@ -134,7 +133,10 @@ key_mapper.cmp = {
 }
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local open_with_trouble = require("trouble.sources.telescope").open
+-- Use this to add more results without clearing the trouble list
+local add_to_trouble = require("trouble.sources.telescope").add
+
 key_mapper.telescope = {
     i = {
         ["<Up>"] = "move_selection_previous",
@@ -143,7 +145,7 @@ key_mapper.telescope = {
         ["<C-j>"] = "move_selection_next",
         ["<leader>v"] = "file_vsplit",
         ["<leader>x"] = "file_split",
-        ["<c-t>"] = trouble.open_with_trouble
+        ["<c-t>"] = open_with_trouble
     }
 }
 
